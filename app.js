@@ -5,7 +5,7 @@ const bodyParser = require("body-parser")
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const encrypt = require("mongoose-encryption");
-
+// initialize express
 const app = express();
 
 
@@ -41,7 +41,7 @@ app.post("/register", function(req, res) {
         email: req.body.username,
         password: req.body.password
     });
-    
+
     newUser.save(function (err) {
         if(err) {
             console.log(err);
