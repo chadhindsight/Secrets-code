@@ -41,6 +41,7 @@ app.post("/register", function(req, res) {
         email: req.body.username,
         password: req.body.password
     });
+    
     newUser.save(function (err) {
         if(err) {
             console.log(err);
