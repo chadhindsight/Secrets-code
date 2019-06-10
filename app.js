@@ -40,8 +40,7 @@ app.post("/register", function(req, res) {
     bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
         const newUser = new User({
             email: req.body.username,
-            // Auth
-            password: md5(req.body.password)
+            password: hash
         });
 
         newUser.save(function (err) {
@@ -71,6 +70,7 @@ app.post("/login", function (req, res) {
       }
   })
 })
+
 app.listen(3000, function() {
     console.log('Server started on Port 3000')
 })
