@@ -1,6 +1,5 @@
 //jshint esversion:6
 require('dotenv').config();
-const md5 = require("md5")
 const express = require("express");
 const bodyParser = require("body-parser")
 const ejs = require("ejs");
