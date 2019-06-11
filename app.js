@@ -36,7 +36,7 @@ app.get("/register", function (req, res) {
 });
 
 app.post("/register", function(req, res) {
-    
+    // Salting
     bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
         const newUser = new User({
             email: req.body.username,
@@ -63,10 +63,11 @@ app.post("/login", function (req, res) {
       }
       else {
           if(foundUser) {
-              bcrypt.compare(someOtherPlaintextPassword, hash, function (err, res) {
-                  // res == false
+              bcrypt.compare(password, foundUser.password, function (err, result) {
+                if(result ===true)  {
+                    result.render("secrets")
+                }
               });
-              res.render("secrets")
           }
       }
   })
