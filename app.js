@@ -36,7 +36,7 @@ app.get("/register", function (req, res) {
 });
 
 app.post("/register", function(req, res) {
-    // Salting
+    // Salting related
     bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
         const newUser = new User({
             email: req.body.username,
