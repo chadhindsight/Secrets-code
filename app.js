@@ -15,12 +15,14 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-// most forward
+
 app.use(session({
     secret: 'keyboard cat.',
     resave: false,
     saveUninitialized: true
 }))
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true});
 
