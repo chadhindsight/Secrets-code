@@ -4,8 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser")
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
+require('express-session')
+
 const app = express();
 
 
