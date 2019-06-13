@@ -30,8 +30,15 @@ const userSchema = new mongoose.Schema ({
     email: String,
     password: String
 });
+// hash and salt with this
+userSchema.plugin(passportLocalMongoose);
 
 const User = new mongoose.model("User", userSchema);
+passport.use(User.createStrategy());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 app.get("/", function(req, res) {
     res.render("home");
