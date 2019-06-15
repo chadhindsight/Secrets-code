@@ -60,7 +60,6 @@ app.get("secrets", function (req, res) {
     else { res.redirect("login") }
     
 })
-// post route 
 app.post("/register", function(req, res) {
    
     User.register({userName: req.body.username}, req.body.password, function (err, user){
