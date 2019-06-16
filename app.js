@@ -57,7 +57,7 @@ app.get("secrets", function (req, res) {
     if(req.isAuthenticated()) {
         res.render("secrets");
     }
-    
+
     else { res.redirect("login") }
     
 })
@@ -78,8 +78,10 @@ app.post("/register", function(req, res) {
 })
 
 app.post("/login", function (req, res) {
-  const  userName = req.body.username;
-  const password = req.body.password;
+  const  user = new User({
+      username: req.body.username,
+      password: req.body.password
+  })
 
   
 })
