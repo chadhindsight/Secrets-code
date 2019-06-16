@@ -82,10 +82,23 @@ app.post("/login", function (req, res) {
       username: req.body.username,
       password: req.body.password
   })
+// passport has a login function
+    req.login(user, function (err) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            passport.authenticate("local")
+        }
+    })
+})
 
-  
+app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/")
 })
 
 app.listen(3000, function() {
     console.log('Server started on Port 3000')
 })
+
