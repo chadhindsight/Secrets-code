@@ -92,7 +92,7 @@ app.post("/login", function (req, res) {
         }
     })
 })
-
+// de auth
 app.get("/logout", function(req, res) {
     req.logout();
     res.redirect("/")
