@@ -40,7 +40,7 @@ userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User", userSchema);
 passport.use(User.createStrategy());
-// passport stuff
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -59,6 +59,10 @@ passport.use(new GoogleStrategy({
 
 app.get("/", function(req, res) {
     res.render("home");
+})
+
+app.get("/auth/google", function(req, res) {
+    passport
 })
 
 app.get("/login", function (req, res) {
