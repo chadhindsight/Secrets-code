@@ -62,7 +62,7 @@ app.get("/", function(req, res) {
 })
 
 app.get("/auth/google", function(req, res) {
-    passport.authenticate()
+    passport.authenticate("google", {scope: ['profile']})
 })
 
 app.get("/login", function (req, res) {
