@@ -33,7 +33,8 @@ mongoose.set("useCreateIndex", true);
 const userSchema = new mongoose.Schema ({
     email: String,
     password: String,
-    googleId: String
+    googleId: String,
+    secret: String
 });
 // hash and salt with this
 userSchema.plugin(passportLocalMongoose);
@@ -105,7 +106,9 @@ app.get("/submit", function(req, res) {
     else { res.redirect("login") }
 })
 app.post("/submit", function (req, res) {
-    
+    const submittedSecret = req.body.secret;
+
+    console.log(req.user)
 })
 
 app.post("/register", function(req, res) {
