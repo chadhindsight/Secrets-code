@@ -32,7 +32,8 @@ mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
     email: String,
-    password: String
+    password: String,
+    googleId: String
 });
 // hash and salt with this
 userSchema.plugin(passportLocalMongoose);
@@ -41,9 +42,16 @@ userSchema.plugin(findOrCreate);
 const User = new mongoose.model("User", userSchema);
 passport.use(User.createStrategy());
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
 
+// used to deserialize the user
+passport.deserializeUser(function (id, done) {
+    User.findById(id, function (err, user) {
+        done(err, user);
+    });
+});
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
@@ -87,6 +95,14 @@ app.get("secrets", function (req, res) {
 
     else { res.redirect("login") }
     
+})
+
+app.get("/submit", function(params) {
+    if (req.isAuthenticated()) {
+        res.render("submit");
+    }
+
+    else { res.redirect("login") }
 })
 
 app.post("/register", function(req, res) {
