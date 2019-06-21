@@ -90,11 +90,7 @@ app.get("/register", function (req, res) {
 });
 
 app.get("secrets", function (req, res) {
-    if(req.isAuthenticated()) {
-        res.render("secrets");
-    }
-
-    else { res.redirect("login") }
+    
     
 })
 
@@ -109,7 +105,21 @@ app.post("/submit", function (req, res) {
     const submittedSecret = req.body.secret;
 
     console.log(req.user)
-})
+
+    User.findById(req.user.id, function(err ,foundUser) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            if(foundUser) {
+                foundUser.secret = submittedSecret;
+                foundUser.save(function(){
+                    res.redirect("/secrets");
+                })
+            }
+        }
+    });
+});
 
 app.post("/register", function(req, res) {
    
