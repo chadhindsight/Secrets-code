@@ -160,7 +160,7 @@ app.post("/login", function (req, res) {
         }
     })
 })
-// de auth
+// de auth/ lucy bronze
 app.get("/logout", function(req, res) {
     req.logout();
     res.redirect("/")
