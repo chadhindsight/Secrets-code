@@ -156,6 +156,7 @@ app.post("/login", function (req, res) {
         if(err) {
             console.log(err)
         }
+        
         else {
             passport.authenticate("local")
         }
